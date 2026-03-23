@@ -13,9 +13,15 @@ st.title("📅 Генератор временных меток")
 # --- Боковая панель ---
 with st.sidebar:
     st.header("Параметры")
-    start_date = st.date_input("Дата начала", value=now.date())
+     # Используем "today" для даты начала (Streamlit сам подставит сегодня и разрешит менять)
+    start_date = st.date_input("Дата начала", value="today")
+    
+    # Для времени можно оставить now.time(), но лучше задать фиксированное, например начало дня
+    # иначе при каждой смене настроек время будет обновляться на текущие секунды
     start_time = st.time_input("Время начала", value=now.time())
 
+    # Для даты окончания задаем значение по умолчанию, но так как оно вычисляется, 
+    # Streamlit не будет его жестко фиксировать
     end_date = st.date_input("Дата окончания", value=default_end.date())
     end_time = st.time_input("Время окончания", value=default_end.time())
 
